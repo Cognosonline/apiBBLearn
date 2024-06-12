@@ -1,15 +1,15 @@
 import {S3Client, PutObjectCommand, ListObjectsCommand, GetObjectCommand} from'@aws-sdk/client-s3'
-import {AWS_BUCKET_NAME, AWS_BUCKET_REGION, AWS_PUBLIC_KEY, AWS_SECRET_KEY} from './configs/configs3.js'
+import {MY_AWS_BUCKET_NAME, MY_AWS_BUCKET_REGION, MY_AWS_PUBLIC_KEY, MY_AWS_SECRET_KEY} from './configs/configs3.js'
 import fs from 'fs'
 import {getSignedUrl} from '@aws-sdk/s3-request-presigner'
 import { Sha256 } from "@aws-crypto/sha256-browser"; 
 
 
 const client = new S3Client({
-    region: AWS_BUCKET_REGION,
+    region: MY_AWS_BUCKET_REGION,
     credentials: {
-        accessKeyId: AWS_PUBLIC_KEY,
-        secretAccessKey: AWS_SECRET_KEY
+        accessKeyId: MY_AWS_PUBLIC_KEY,
+        secretAccessKey: MY_AWS_SECRET_KEY
 
         
     }
@@ -19,7 +19,7 @@ export async function uploadFile(file){
     const stream = fs.createReadStream(file.tempFilePath);
 
     const uploadParams ={
-        Bucket: AWS_BUCKET_NAME,
+        Bucket: MY_AWS_BUCKET_NAME,
         Key: file.name,
         Body: stream
     }
@@ -35,7 +35,7 @@ export async function uploadFile(file){
 export async function getFiles(){
 
     const getFiles = {
-        Bucket: AWS_BUCKET_NAME
+        Bucket: MY_AWS_BUCKET_NAME
     }
 
     const command = new ListObjectsCommand(getFiles)
@@ -47,7 +47,7 @@ export async function getFiles(){
 export async function getFile(filename){
 
     const getFile = {
-        Bucket: AWS_BUCKET_NAME,
+        Bucket: MY_AWS_BUCKET_NAME,
         Key: filename
     }
 
@@ -58,7 +58,7 @@ export async function getFile(filename){
 export async function downloadFile(filename){
 
     const getFile = {
-        Bucket: AWS_BUCKET_NAME,
+        Bucket: MY_AWS_BUCKET_NAME,
         Key: filename
     }
 
@@ -69,7 +69,7 @@ export async function downloadFile(filename){
 
 export async function getFileURL(filename) {
     const command = new GetObjectCommand({
-        Bucket: AWS_BUCKET_NAME,
+        Bucket: MY_AWS_BUCKET_NAME,
         Key: filename
     });
 

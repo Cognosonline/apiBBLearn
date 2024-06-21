@@ -1,4 +1,4 @@
-import 'dotenv/config'
+//import 'dotenv/config'
 import'./configs/db.js';
 import './configs/configs3.js';
 import express from 'express';
@@ -19,10 +19,10 @@ import { oauthGetToken, loginB } from './controllers/auth.controller.js';
 const app = express();
 
 const corsOptions = {
-  origin: 'http://localhost:5173', // dominio frontend
+  origin: 'https://master.d1jucbpkspz3zd.amplifyapp.com', // dominio frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true 
+  credentials: true
 };
 
 app.use(cors(corsOptions));
@@ -65,10 +65,10 @@ app.get('*', (req, res) => {
 });
 
 
-app.listen(app.get('port'), () => {
+/*app.listen(app.get('port'), () => {
    console.log(`Server on port ${app.get('port')}`);
 
- })
+ })*/
 
 // Export the handler for Lambda
-//export const handler = serverless(app);
+export const handler = serverless(app);

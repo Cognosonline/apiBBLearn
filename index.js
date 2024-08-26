@@ -1,4 +1,4 @@
-//import 'dotenv/config'
+import 'dotenv/config'
 import'./configs/db.js';
 import './configs/configs3.js';
 import express from 'express';
@@ -14,12 +14,12 @@ import coursesRoutes from './routes/course.routes.js';
 import certificate from './routes/certificate.routes.js';
 import oauthRoutes from './routes/oauth.routes.js';
 
-import { oauthGetToken, loginB } from './controllers/auth.controller.js';
+import { loginB } from './controllers/auth.controller.js';
 
 const app = express();
 
 const corsOptions = {
-  origin: 'https://master.d1jucbpkspz3zd.amplifyapp.com', // dominio frontend
+  origin: 'https://avafpcertificados.cognosonline.com', // dominio frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
@@ -37,14 +37,14 @@ app.use(session({
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(fileUpload({
+/*app.use(fileUpload({
   createParentPath: true,
   useTempFiles: true,
   tempFileDir: './certificados'
-}));
+}));*/
 
 
-app.set('port', process.env.PORT || 3002);
+app.set('port', process.env.PORT || 3000);
 
 // Initialize routes and middleware
 app.get('/loginBB', loginB);
@@ -65,10 +65,10 @@ app.get('*', (req, res) => {
 });
 
 
-/*app.listen(app.get('port'), () => {
+app.listen(app.get('port'), () => {
    console.log(`Server on port ${app.get('port')}`);
 
- })*/
+})
 
 // Export the handler for Lambda
-export const handler = serverless(app);
+//export const handler = serverless(app);

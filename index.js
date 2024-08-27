@@ -2,11 +2,11 @@ import 'dotenv/config'
 import'./configs/db.js';
 import './configs/configs3.js';
 import express from 'express';
-import serverless from 'serverless-http';
+//import serverless from 'serverless-http';
 import cors from 'cors';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
-import fileUpload from 'express-fileupload';
+//import fileUpload from 'express-fileupload';
 
 import logsRoutes from './routes/logs.routes.js';
 import userRoutes from './routes/user.routes.js';

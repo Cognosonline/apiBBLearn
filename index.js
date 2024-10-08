@@ -48,6 +48,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('trust proxy', 1);
 
 // Initialize routes and middleware
+app.get('/', (req, res) => res.send('api certificados cognos'));
 app.get('/loginBB', loginB);
 
 app.use('/api', userRoutes);

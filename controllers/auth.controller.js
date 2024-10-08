@@ -24,7 +24,7 @@ const oauthGetToken = async (req, res, next) => {
 
     try {
         const { code } = req.body;
-        console.log('code',code)
+        //console.log('code',code)
         const tokenEndpoint = process.env.TOKEN_INFO_URI;
 
         const authString = Buffer.from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`).toString('base64');

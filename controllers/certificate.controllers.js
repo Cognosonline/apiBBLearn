@@ -16,7 +16,7 @@ const getCertificate = async (req, res) => {
 }
 
 const uploadCertificate = async (req, res) => {
-    console.log('cer:',req.files)
+    //console.log('cer:',req.files)
     await uploadFile(req.files.certificado);
 
     Object.values(req.files).forEach(file => {
@@ -49,7 +49,7 @@ const downloadCertificate = async (req, res) => {
 const getCertificateCourseId = async (req, res) => {
     
     const result = await certificate.getOne(req.params.courseId)
-    console.log(result)
+    //console.log(result)
     res.json({
         payload: result
     })
@@ -71,7 +71,7 @@ const deletedCertificate = async (req, res) => {
 
 const updateCoords = async (req, res) => {
     
-    console.log(req.body)
+    //console.log(req.body)
     const fileCourse = await certificate.getOne(req.body.courseId)
 
     let nameX = req.body.nameX

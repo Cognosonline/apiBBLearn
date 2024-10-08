@@ -5,10 +5,10 @@ import user from '../repositories/user.repository.js';
 
 const getUSer = async (req, res) => {
 
-    console.log('enviando data de user a blackboard')
+   // console.log('enviando data de user a blackboard')
 
     const userName = `uuid:${req.params.userId}`;
-    console.log(req.headers.authorization)
+   
     let authUser = req.headers.authorization;
     const userUrl = `${process.env.URL}/v1/users/${userName}`;
 
@@ -20,7 +20,7 @@ const getUSer = async (req, res) => {
     })
 
     const data = await response.json();
-    console.log(data)
+    //console.log(data)
     if (data.status === 404) {
         res.json({
             payload:
@@ -49,16 +49,16 @@ const verificateUser = async (req, res) => {
         const userName = req.body.user;
         const pass = req.body.pass
 
-        console.log(req.body)
+        //console.log(req.body)
 
-        console.log('nombre de usuario', userName)
-        console.log('contraseña', pass)
+        //console.log('nombre de usuario', userName)
+        //console.log('contraseña', pass)
 
         const userLog = await user.getOne(userName);
-        console.log(userLog)
+       // console.log(userLog)
         const passEncrypt = await bcrypt.compare(pass, userLog.password);
       
-        console.log('passEncrypt', passEncrypt)
+       /// console.log('passEncrypt', passEncrypt)
         if (passEncrypt) {
             res.json({
                 payload: true,
@@ -71,7 +71,7 @@ const verificateUser = async (req, res) => {
             })
         }
     } catch (error) {
-        console.log('usuario no existente', error)
+       // console.log('usuario no existente', error)
         res.json({
             payload: false,
             message: 'usuario no existente'

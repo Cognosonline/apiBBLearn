@@ -6,7 +6,7 @@ import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
-//import fileUpload from 'express-fileupload';
+import fileUpload from 'express-fileupload';
 
 import logsRoutes from './routes/logs.routes.js';
 import userRoutes from './routes/user.routes.js';
@@ -19,7 +19,7 @@ import { loginB } from './controllers/auth.controller.js';
 const app = express();
 
 const corsOptions = {
-  origin: 'https://avafpcertificados.cognosonline.com', // dominio frontend
+  origin: '*', // dominio frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
@@ -37,14 +37,15 @@ app.use(session({
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-/*app.use(fileUpload({
+app.use(fileUpload({
   createParentPath: true,
   useTempFiles: true,
   tempFileDir: './certificados'
-}));*/
+}));
 
 
 app.set('port', process.env.PORT || 3000);
+app.set('trust proxy', 1);
 
 // Initialize routes and middleware
 app.get('/loginBB', loginB);

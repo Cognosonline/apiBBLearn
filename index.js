@@ -58,7 +58,7 @@ app.use('/api', oauthRoutes);
 
 
 app.get('/otra-ruta', (req, res) => {
-  res.send('Otra ruta prueba logins');
+  res.send('Otra ruta prueba logins, proxy');
 });
 
 app.get('*', (req, res) => {

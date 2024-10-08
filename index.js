@@ -18,6 +18,8 @@ import { loginB } from './controllers/auth.controller.js';
 
 const app = express();
 
+app.set('trust proxy', 1);
+
 const corsOptions = {
   origin: '*', // dominio frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -45,7 +47,7 @@ app.use(fileUpload({
 
 
 app.set('port', process.env.PORT || 3000);
-app.set('trust proxy', 1);
+
 
 // Initialize routes and middleware
 app.get('/', (req, res) => res.send('api certificados cognos'));

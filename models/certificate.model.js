@@ -10,7 +10,11 @@ const certificateSchema = new Schema({
     documentX:{type:Number, default:'10'},
     documentY:{type:Number, default:'65'},
     widthR:{type:Number, default:0},
-    heightR:{type:Number, default:0},    
+    heightR:{type:Number, default:0},
+    fontsize: {type:Number, default:16},
+    fontFamily : {type: String, default:'Arial'},
+    color: {type:String, default: '#000000'},
+    italic: {type:Boolean, default: true},    
     state:{type:String, default:'0'},
     reqScore :{type: Number, default: '0'},
     createDate : {type: Date, default: Date.now()}

@@ -6,7 +6,6 @@ import user from '../repositories/user.repository.js';
 const getUSer = async (req, res) => {
 
    // console.log('enviando data de user a blackboard')
-
     const userName = `uuid:${req.params.userId}`;
    
     let authUser = req.headers.authorization;
@@ -20,7 +19,7 @@ const getUSer = async (req, res) => {
     })
 
     const data = await response.json();
-    //console.log(data)
+
     if (data.status === 404) {
         res.json({
             payload:

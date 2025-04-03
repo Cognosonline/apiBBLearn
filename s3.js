@@ -16,6 +16,7 @@ const client = new S3Client({
 })
 
 export async function uploadFile(file){
+   
     const stream = fs.createReadStream(file.tempFilePath);
 
     const uploadParams ={

@@ -7,6 +7,7 @@ import cors from 'cors';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
+import morgan from 'morgan';
 
 import logsRoutes from './routes/logs.routes.js';
 import userRoutes from './routes/user.routes.js';
@@ -21,13 +22,14 @@ const app = express();
 app.set('trust proxy', 1);
 
 const corsOptions = {
-  origin: '*', // dominio frontend
+  origin: 'http://localhost:5173', // dominio frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 };
 
 app.use(cors(corsOptions));
+app.use(morgan('dev'));
 app.options('*', cors(corsOptions));
 
 app.use(session({

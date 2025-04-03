@@ -3,7 +3,6 @@ import fetch from 'node-fetch';
 const getCourse = async (req, res) => {
 
     const courseId = req.params.id;
-    console.log(courseId)
     const authUser = req.headers.authorization;
     const url = `${process.env.URL}/v3/courses/${courseId}`;
 
@@ -17,7 +16,6 @@ const getCourse = async (req, res) => {
         })
 
         const data = await response.json();
-        console.log(data)
 
         try {
             const urlGrandbook = `${process.env.URL}/v2/courses/${courseId}/gradebook/columns/finalGrade/users`;
@@ -25,13 +23,12 @@ const getCourse = async (req, res) => {
             const responseGrandbook = await fetch(urlGrandbook, {
                 method: 'GET',
                 headers: {
-                    'Authorization': authUser 
+                    'Authorization': authUser
                 }
             })
 
             const dataStudents = await responseGrandbook.json();
-            console.log(dataStudents)
-            
+  
             const arrStudents = await Promise.all(dataStudents.results.map(async (element) => {
 
                 const urlC = `${process.env.URL}/v1/users/`;
@@ -77,9 +74,7 @@ const getCourse = async (req, res) => {
             })
 
         } catch (e) {
-
-
-           // console.log('libro de califiaciones vacio');
+            // console.log('libro de califiaciones vacio');
             res.json({
                 payload: {
                     course: {
@@ -92,8 +87,6 @@ const getCourse = async (req, res) => {
                     students: null
                 }
             })
-
-
         }
 
     } catch (error) {
@@ -104,8 +97,8 @@ const getCourse = async (req, res) => {
 const getCourses = async (req, res) => {
 
     const userId = `userName:${req.params.id}`
- 
-    
+
+
     let authUser = req.headers.authorization;
 
     const url = `${process.env.URL}/v1/users/${userId}/courses`;
@@ -121,7 +114,7 @@ const getCourses = async (req, res) => {
         const data = await response.json();
 
         const courses = data.results
-     
+
 
         const arrCourses = await Promise.all(courses.map(async (element) => {
 
@@ -138,7 +131,11 @@ const getCourses = async (req, res) => {
                 const courseInfo = await responseCourses.json();
 
                 return {
-                    courseInfo: courseInfo,
+                    courseInfo: {
+                        id: courseInfo.id,
+                        courseId: courseInfo.courseId,
+                        name: courseInfo.name
+                    },
                     role: element.courseRoleId
                 }
 

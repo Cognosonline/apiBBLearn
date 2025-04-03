@@ -40,16 +40,21 @@ const update = async (fileCourse, fileName) => {
     }
 }
 
-const updateCoords = async (fileCourse, nameX, nameY, documentX, documentY, widthR, heightR) => {
+const updateCoords = async (fileCourse, 
+    nameX, nameY,
+    documentX, documentY,
+    fontsize, fontFamily, color, italic) => {
     try {
         const fileUpdate = await Certificate.findByIdAndUpdate(fileCourse._id,
             {
+                fontsize: fontsize,
+                fontFamily:fontFamily,
+                color:color,
+                italic:italic,
                 nameX: nameX,
                 nameY: nameY,
                 documentX: documentX,
-                documentY: documentY,
-                widthR: widthR,
-                heightR: heightR
+                documentY: documentY
             })
 
         if (fileUpdate) {

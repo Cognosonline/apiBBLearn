@@ -52,7 +52,7 @@ app.set('port', process.env.PORT || 3000);
 
 
 // Initialize routes and middleware
-app.get('/', (req, res) => res.send('api certificados cognos'));
+app.get('/', (req, res) => res.send('api certificados cognosonline'));
 app.get('/loginBB', loginB);
 
 app.use('/api', userRoutes);

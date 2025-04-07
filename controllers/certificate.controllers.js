@@ -107,10 +107,13 @@ const updateCoords = async (req, res) => {
         let { fontsize, fontFamily, color, italic } = req.body
 
 
-        const result = await certificate.updateCoords(fileCourse,
+        await certificate.updateCoords(fileCourse,
             nameX, nameY,
             documentX, documentY,
             fontsize, fontFamily, color, italic);
+        
+        const result = await certificate.getOne(req.body.courseId)
+        console.log(result)
 
         res.json({
             payload: result

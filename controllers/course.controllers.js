@@ -81,11 +81,11 @@ const getCourse = async (req, res) => {
                     })
 
                     const studentInfo = await responseStudent.json();
-
+                    
                     return {
                         user: {
                             id: studentInfo.id,
-                            externalId: studentInfo.externalId,
+                            externalId: studentInfo.userName,
                             institutionRoleIds: studentInfo.institutionRoleIds,
                             name: studentInfo.name.given + " " + (studentInfo.name.middle ? studentInfo.name.middle : "") + " " + studentInfo.name.family
                         },

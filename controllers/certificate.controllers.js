@@ -113,8 +113,7 @@ const updateCoords = async (req, res) => {
             fontsize, fontFamily, color, italic);
         
         const result = await certificate.getOne(req.body.courseId)
-        console.log(result)
-
+        
         res.json({
             payload: result
         })

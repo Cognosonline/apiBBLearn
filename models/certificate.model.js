@@ -11,7 +11,7 @@ const certificateSchema = new Schema({
     documentY:{type:Number, default:'65'},
     widthR:{type:Number, default:0},
     heightR:{type:Number, default:0},
-    fontsize: {type:Number, default:16},
+    fontsize: {type:Number, default:20},
     fontFamily : {type: String, default:'Arial'},
     color: {type:String, default: '#000000'},
     italic: {type:Boolean, default: true},    

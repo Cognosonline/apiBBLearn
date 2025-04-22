@@ -52,11 +52,6 @@ const verificateUser = async (req, res) => {
         const userName = req.body.user;
         const pass = req.body.pass
 
-        //console.log(req.body)
-
-        //console.log('nombre de usuario', userName)
-        //console.log('contraseña', pass)
-
         const userLog = await user.getOne(userName);
         // console.log(userLog)
         const passEncrypt = await bcrypt.compare(pass, userLog.password);
@@ -90,7 +85,7 @@ const getScoreCourseUser = async (req, res) => {
     const authUser = req.headers.authorization;
 
     const userName = `userName:${userId}`; 	
-    console.log(courseId)
+
 
     const url = `${process.env.URL}/v2/courses/${courseId}/gradebook/columns/finalGrade/users/${userName}`;
     try {
@@ -100,8 +95,6 @@ const getScoreCourseUser = async (req, res) => {
                 'Authorization': authUser
             }
         })
-
-        console.log(response)
 
         const dataGradebook = response.json();
         res.json({
